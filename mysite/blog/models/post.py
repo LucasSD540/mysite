@@ -35,4 +35,3 @@ class SecondPostModel(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     categories = models.ManyToManyField('Category', related_name='posts')
     tags = models.ManyToManyField('Tag', related_name='posts')
-
