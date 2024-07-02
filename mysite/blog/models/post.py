@@ -28,10 +28,24 @@ class Post(models.Model):
 class SecondPostModel(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='second_blog_post')
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add =True)
     status = models.IntegerField(choices=STATUS, default=0)
-    categories = models.ManyToManyField('Category', related_name='posts')
-    tags = models.ManyToManyField('Tag', related_name='posts')
+    categories = models.ManyToManyField('Category', related_name='second_post_models')
+    tags = models.ManyToManyField('Tag', related_name='second_post_models')
+
+# Define o modelo para a Categoria
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+# Define o modelo para a Tag
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
